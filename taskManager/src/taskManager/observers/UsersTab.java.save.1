@@ -1,0 +1,28 @@
+package taskManager.observers;
+
+import taskManager.display.DisplayFile;
+import taskManager.tabs.User;
+public class UsersTab implements Observer, DisplayFile{
+	public void update(String strIn){
+		System.out.println("USER: "+strIn);
+		processInputString(strIn);
+		usersList = new ArrayList<User>();
+		User newUser = new User();
+		
+	}
+
+	private void processInputString(String strIn){
+		List<User> usersList = new ArrayList<User>();
+                User newUser = null;
+		String[] users = strIn.split("-");
+		String[] userDetails = null;
+		for(String user: users){
+			userDetails = user.split(":");
+			newUser = new User();
+			newUser.setUsername(userDetails[0]);
+			newUser.setStatus(userDetails[1]);
+			usersList.add(newUser);
+		}
+		
+	}
+}
